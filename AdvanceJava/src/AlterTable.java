@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class InsertRecord {
+public class AlterTable {
 	public static void main(String [] args) throws SQLException
 	{
 		Connection myConn = null;
@@ -18,15 +18,12 @@ public class InsertRecord {
 		
 		System.out.println("Database connection successfully!");
 		myConn.setAutoCommit(false);
-		myStmt = myConn.prepareStatement("INSERT INTO `17it109`(`SGPA`, `CGPA`, `class`) VALUES (?,?,?)");
-		myStmt.setDouble(1, 9.44);
-		myStmt.setDouble(2, 9.17);
-		myStmt.setString(3,"IT");
-		
+		myStmt = myConn.prepareStatement("ALTER TABLE `17it109` ADD COLUMN `marksheet` blob");
 		try {
 			myStmt.execute();
 		} catch (Exception e) {
-			System.out.println("Problem");
+			
+			System.out.println("Problem"+e.getMessage());
 		}
 		myConn.commit();
 
